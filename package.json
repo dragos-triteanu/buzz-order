@@ -1,0 +1,22 @@
+{
+  "name": "celebrate-pride",
+  "version": "1.0.0",
+  "description": "Pridify application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Panda",
+  "license": "MIT"
+  ,"dependencies": {
+    "express": "^4.13.0",
+    "express-session": "^1.11.3",
+    "mongodb": "~2.0",
+    "mongoose": "4.0.6",
+    "mongo-express": "0.21.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dragos-triteanu/celebrate-pride.git"
+  }
+}
