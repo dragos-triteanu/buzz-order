@@ -3,7 +3,6 @@
  * For the momment it only contains a GET and a POST operation of the /User mapping.
  * @type {exports}
  */
-
 var SomeModel = require('../model/SomeModel');
 
 /**
@@ -15,6 +14,17 @@ var SomeModel = require('../model/SomeModel');
  */
 var HomeController = function(express){
     var homeController = express.Router();
+
+    /**
+     * Controller for '/' mapping that sends a static html file.
+     *
+     * __dirname variable is node's notion of classpath/application path.
+     */
+    homeController.route('/')
+        .get(function(request,response){
+            response.sendFile("index.html");
+        });
+
 
     homeController.route('/User')
         .get(function(request,response){
@@ -30,7 +40,6 @@ var HomeController = function(express){
             var anotherObj = {key:"112233",value:"332211"};
             response.send(anotherObj);
         });
-
     return homeController;
 }
 
