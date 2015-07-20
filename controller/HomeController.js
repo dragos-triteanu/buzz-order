@@ -4,6 +4,7 @@
  * @type {exports}
  */
 var SomeModel = require('../model/SomeModel');
+var bodyParser = require('body-parser');
 
 /**
  * Creates an instance of a HomeController, having it's mappings configured.
@@ -25,21 +26,38 @@ var HomeController = function(express){
             response.sendFile("index.html");
         });
 
+    /**
+     * Illustration of the use of path variables.The status code 201 is just to illustrate
+     * the use of status.
+     */
+    homeController.route('/dynamic/:pathParam').get(function(request,response){
+        response.status(201).send("Accessed the "+request.params.pathParam + " mapping");
+    });
 
     homeController.route('/User')
         .get(function(request,response){
-            SomeModel.find(function(err,model){
-                if(err){
-                    console.log(err);
-                }
-                response.json(model);
-            });
 
+           if(request.query.id != null){
+               var user = {name:"User"};
+               user.id = request.query.id;
+
+               response.json(user);
+           }else{
+               SomeModel.find(function(err,model){
+                       if(err){
+                            console.log(err);
+                        }
+                   response.json(model);
+                });
+           }
         })
-        .post(function(request,response){
-            var anotherObj = {key:"112233",value:"332211"};
+        .post(bodyParser.json(),function(request,response){
+            console.log(request.body);
+            var anotherObj = {body:request.body};
             response.send(anotherObj);
         });
+
+
     return homeController;
 }
 
