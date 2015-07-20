@@ -8,8 +8,6 @@ var logger = require('./logger/Logger');
 var homeController = require("./controller/HomeController")(express);
 
 
-
-
 /**
  * Configurations
  */

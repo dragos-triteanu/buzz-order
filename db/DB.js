@@ -6,15 +6,7 @@ var dbConnection = mongoose.connection;
 //This is only for test purposes.
 dbConnection.on("error",console.error);
 dbConnection.on("open",function(){
-    var someModel = SomeModel({
-        username:"Someone"
-    });
-    someModel.save(function(err,model){
-        if(err){
-            return console.error(err);
-        }
-        console.log(model);
-    });
+    console.log("Connection to MongoDB = OPEN");
 });
 
 //Export the DB module

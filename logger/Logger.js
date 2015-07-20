@@ -10,7 +10,7 @@ module.exports = function(request,response,next){
     var url = request.url;
     var method = request.method;
 
-    var message = method + " on "+ url;
+    var message = method + " on "+ url+"\n";
     stream.write(message);
 
     next();

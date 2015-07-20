@@ -36,12 +36,11 @@ var HomeController = function(express){
 
     homeController.route('/User')
         .get(function(request,response){
-
            if(request.query.id != null){
-               var user = {name:"User"};
-               user.id = request.query.id;
-
-               response.json(user);
+               var subDocument = {};
+               SomeModel.findById(request.query.id,function(err,document){
+                   response.json(document);
+               });
            }else{
                SomeModel.find(function(err,model){
                        if(err){
@@ -53,10 +52,19 @@ var HomeController = function(express){
         })
         .post(bodyParser.json(),function(request,response){
             console.log(request.body);
-            var anotherObj = {body:request.body};
-            response.send(anotherObj);
+            if(request.body.username != null){
+                var someModel = SomeModel({
+                    username:request.body.username
+                });
+                someModel.save(function(err,model){
+                    if(err){
+                        return console.error(err);
+                    }
+                    console.log(model);
+                });
+                response.status(201).send(someModel);
+            }
         });
-
 
     return homeController;
 }
