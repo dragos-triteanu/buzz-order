@@ -1,7 +1,7 @@
 .mainContaner{
-    width: 100%;
+    width: 50%;
     height: 748px;
-    background: url("../images/some-image.jpg") no-repeat;
+    /*background: url("../images/some-image.jpg") no-repeat;*/
     margin-left:25%
 }
 
@@ -11,4 +11,10 @@
 
 .tableContainer{
     margin-left: 10%;
+}
+
+.imageContainer{
+    width: 30%;
+    height: 80%;
+    margin-left: 40%;
 }
