@@ -16,12 +16,8 @@ app.use(express.static('resources/views'));
 app.use(express.static('resources'));
 //Configuring node to use the JSON body parser for requests.
 
-
-
-
 app.use(logger);
 app.use("/",homeController);
-
 
 app.listen(port, function () {
     console.log("Express started and Listening on port " + port);

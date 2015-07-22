@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 
-
-<html>
+<html ng-app="home">
     <head>
         <meta charset="UTF-8">
         <title>Buzz Order</title>
-        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
     </head>
 
     <body>
-        <h1>Static HTML file served</h1>
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/angular/angular.min.js" />
+    <script type="text/javascript" src="js/angular-route.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <div class="mainContaner" ng-controller="HomeController as homeController">
+        <div ng-repeat="product in homeController.products" class="tableContainer">
+            <div class="row" ng-show="product.visible">
+                <div class="col-md-2 tableRow">
+                    <p>{{product.name}}</p>
+                </div>
+                <div class="col-md-1 tableRow">
+                    <p>{{product.value}}$</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     </body>
 </html>

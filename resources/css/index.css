@@ -1,0 +1,14 @@
+.mainContaner{
+    width: 100%;
+    height: 748px;
+    background: url("../images/some-image.jpg") no-repeat;
+    margin-left:25%
+}
+
+.tableRow{
+    border: 1px solid darkred;
+}
+
+.tableContainer{
+    margin-left: 10%;
+}
