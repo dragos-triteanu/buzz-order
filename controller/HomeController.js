@@ -23,7 +23,7 @@ var HomeController = function(express){
      */
     homeController.route('/')
         .get(function(request,response){
-            response.sendFile("index.html");
+            response.sendFile("user.html",{root:'./resources/views'});
         });
 
     /**
@@ -51,7 +51,6 @@ var HomeController = function(express){
            }
         })
         .post(bodyParser.json(),function(request,response){
-            console.log(request.body);
             if(request.body.username != null){
                 var someModel = SomeModel({
                     username:request.body.username
@@ -64,6 +63,18 @@ var HomeController = function(express){
                 });
                 response.status(201).send(someModel);
             }
+        });
+
+    homeController.route('/User/:deletionId').post(bodyParser.json(),function(request,response){
+            var deletionId = request.params.deletionId;
+            console.log("Trying to delete "+ deletionId);
+            if(deletionId != null){
+                SomeModel.remove({_id:deletionId},function(err){
+                   console.log("Deleted Object with _id="+deletionId);
+                });
+            }
+            response.status(200);
+            response.send("DELETED object "+ deletionId);
         });
 
     return homeController;

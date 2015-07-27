@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var port = 3000;
+var path = require('path');
 
 var SomeModel = require('./model/SomeModel');
 var db = require("./db/DB");
@@ -12,8 +13,8 @@ var homeController = require("./controller/HomeController")(express);
  * Configurations
  */
 //Indicated to node that 'resources/views' will be used as folder for using static html.
-app.use(express.static('resources/views'));
-app.use(express.static('resources'));
+app.use(express.static(path.join(__dirname,'resources/views')));
+app.use(express.static(path.join(__dirname,'resources')));
 //Configuring node to use the JSON body parser for requests.
 
 app.use(logger);

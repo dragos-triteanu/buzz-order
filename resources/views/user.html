@@ -1,44 +1,44 @@
 <!DOCTYPE html>
+<html ng-app="users">
+<head>
+    <meta charset="UTF-8">
+    <title>Buzz Order</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="js/angular/angular.min.js" />
+    <script type="text/javascript" src="js/angular-route.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
 
-<html ng-app="home">
-    <head>
-        <meta charset="UTF-8">
-        <title>Buzz Order</title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script type="text/javascript" src="js/angular/angular.min.js" />
-        <script type="text/javascript" src="js/angular-route.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </head>
-    <body>
-
-        <div class="mainContaner" ng-controller="UserController as userController">
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="product in userController.products | orderBy:'+price'">
-                    <h3>
-                        {{product.name}}
-                        <em class="pull-right">{{product.price | currency}}</em>
-                        <img class="imageContainer" src="{{product.image}}">
-                    </h3>
-                    <section ng-init="tab = 1">
-                        <ul class="nav nav-pills">
-                            <li><a href ng-click="tab = 1">Description</a></li>
-                            <li><a href ng-click="tab = 2">Spcecs</a></li>
-                        </ul>
-                    </section>
-                    {{tab}}
-                </li>
-            </ul>
-        </div>
-
-    <div class="panel" ng-show="tab === 1">
-        <h4>Description</h4>
-        <p>{{product.description}}}</p>
-    </div>
-    <div class="panel" ng-show="tab === 2">
-        <h4>Description</h4>
-        <p>{{product.value}}}</p>
-    </div>
-
-    </body>
+<body>
+<div class="mainContaner" ng-controller="UserController as userController">
+    <table id="userTable" class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in userController.users">
+                <td>
+                    {{user._id}}
+                </td>
+                <td>
+                    {{user.username}}
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="userController.deleteUser(user)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" id="newUserInput" ng-model="userController.user.username"></td>
+                <td><button class="btn" id="addUserButton" ng-click="userController.addNewUser(userController.user)">Add</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
 </html>
